@@ -48,14 +48,21 @@ source install/setup.bash
 
 ## Usage
 
-### 0. Pythonで目標角度司令
+### 1. Pythonで目標角度司令
 ```bash
-ros2 run kinematics_so100 joint_command_publish?example
+ros2 run kinematics_so100 joint_command_publish example
 ```
 
 Python内の配列を書き換えると６秒おきに目標角度を/joint_commandに出力します。
 
-### 1. RVizでロボットモデルを表示
+同時に実機を起動すると、司令にしたがって実機が動きます。:
+
+```bash
+ros2 run feetech_sts_example calibration_servo_config
+ros2 run feetech_sts_example read_write_position
+```
+
+### 2. RVizでロボットモデルを表示
 
 #### GUIスライダーで操作
 
@@ -87,7 +94,7 @@ ros2 topic pub /joint_states sensor_msgs/JointState "{
 ros2 run feetech_sts_example read_write_position
 ```
 
-### 2. 逆運動学の計算
+### 3. 逆運動学の計算
 
 URDFからロボットの寸法を自動読み込みして、目標位置から関節角度を計算します。
 
@@ -117,7 +124,7 @@ Target yaw: 0.000 rad
 ✓ Inverse kinematics computed successfully
 ```
 
-### 3. Pythonコードでの使用
+### 4. Pythonコードでの使用
 
 ```python
 from kinematics_so100.inverse_kinematics_example import SO100InverseKinematics
@@ -192,23 +199,6 @@ source install/setup.bash
 ros2 topic hz /joint_states
 ros2 topic echo /joint_states
 ```
-
-### RVizの表示がおかしい
-
-RViz設定をリセット：
-
-```bash
-rm -rf ~/.config/rviz2
-ros2 launch kinematics_so100 display.launch.py
-```
-
-## ライセンス
-
-TODO: ライセンス宣言
-
-## 開発者
-
-- Maintainer: koki <koki.muramoto77@gmail.com>
 
 ## 参考
 
