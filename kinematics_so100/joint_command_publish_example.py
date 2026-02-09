@@ -5,9 +5,9 @@ from sensor_msgs.msg import JointState
 
 class JointStatePublishExample(Node):
 	def __init__(self) -> None:
-		super().__init__("joint_state_publish_example")
+		super().__init__("joint_command_publish_example")
 
-		self.publisher_ = self.create_publisher(JointState, "joint_states", 10)
+		self.publisher_ = self.create_publisher(JointState, "joint_command", 10)
 
 		self.id_list = [1, 2, 3, 4, 5, 6]
 		self.angle_sequences = [

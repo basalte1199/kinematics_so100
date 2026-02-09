@@ -15,6 +15,7 @@ setup(
         (f'share/{package_name}/launch', ['launch/display.launch.py', 'launch/rsp.launch.py']),
         (f'share/{package_name}/so100_description', glob('so100_description/*.urdf')),
         (f'share/{package_name}/so100_description/assets', glob('so100_description/assets/*')),
+        (f'share/{package_name}/rviz', glob('rviz/*.rviz')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -29,7 +30,8 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'joint_state_publish_example = kinematics_so100.joint_state_publish_example:main',
+            'joint_state_publisher = kinematics_so100.joint_state_publisher:main',
+            'joint_command_publish_example = kinematics_so100.joint_command_publish_example:main',
             'yolob8_realsense_example = kinematics_so100.yolob8_realsense_example:main',
             'translate_joint_name = kinematics_so100.translate_joint_name:main',
         ],
